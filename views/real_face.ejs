@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><%= title %></title>
+		<link rel="stylesheet" type="text/css" href="styles.css" />
+		<link rel="stylesheet" type="text/css" href="real_face.css">
+		<script
+		  src="https://code.jquery.com/jquery-3.2.1.min.js"
+		  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+		  crossorigin="anonymous">
+		</script>
+		<script src="real_face.js" type="text/javascript"></script>
+		<% if(!authenticated) { %>
+					<script src="https://smartlock.google.com/client"></script>
+					<script src="userlogin.js" type="text/javascript"></script>
+		<% } %>
+	</head>
+	<body>
+		<div class="grid-container">
+			<div class="topBar"></div>
+			<% if(locals.user) { %>
+				<p id="userid"><%= user %></p>
+			<% } %>
+			<nav>
+				<a href="/">Home</a>
+				<a href="/real_face">Learn</a>
+				<a href="/upload">Upload</a>
+			</nav>
+			<div class="g-signin2"><a href="http://accounts.google.com" target="_blank">
+				<% if(locals.user) { %>Switch account<% } else if(!authenticated) { %>Sign in<% } %></a>
+			</div>
+			<h3 class="score"></h3>
+			<!-- Store variables in hidden inputs so js can access them (LIKE ANSWERS) -->
+			<div class="slideshow-container">
+				<% if (obj.length) { %>
+					<% obj.forEach(function(next) { %>
+						<div class="fade">
+							<img src="<%= next.image_url %>" />
+							<div class="game">
+								<p>First name <input type="text" name="guess_first_name"></p>
+								<input type="hidden" name="answer" value="<%= next.first_name %>">
+								<input type="submit" name="Submit">
+								<p class="result"></p>
+								<div class="person_info" style="display:none">
+									<p>Name: <%= next.first_name %> <%= next.last_name%></p>
+									<p>Major: <%= next.major %></p>
+									<p>Year: <%= next.school_year %></p>
+								</div>
+							</div>
+						</div>
+					<% }); %>
+				<% } %>
+				<!-- Next and previous buttons -->
+				<a class="prev">&#10094;</a>
+				<a class="next">&#10095;</a>
+			</div>
+		</div>
+	</body>
+</html>

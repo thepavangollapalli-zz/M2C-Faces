@@ -1,0 +1,18 @@
+{
+	"name": "Faces",
+	"version:": "1.0.0",
+	"dependencies": {
+		"aws-sdk": "^2.156.0",
+		"body-parser": "^1.18.2",
+		"client-sessions": "^0.8.0",
+		"ejs": "^2.5.7",
+		"express": "^4.16.2",
+		"google-auth-library": "^0.12.0",
+		"mongodb": "^2.2.33",
+		"morgan": "^1.9.0",
+		"node-waf": "^1.0.0"
+	},
+	"scripts": {
+		"start": "node app.js"
+	}
+}

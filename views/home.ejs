@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><%= title %></title>
+		<link rel="stylesheet" type="text/css" href="styles.css" />
+		<link rel="stylesheet" type="text/css" href="home.css" />
+		<script
+		  src="https://code.jquery.com/jquery-3.2.1.min.js"
+		  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+		  crossorigin="anonymous">
+		</script>
+		<script src="https://smartlock.google.com/client"></script>
+		<script src="userlogin.js" type="text/javascript"></script>
+		<script src="home.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<div class="grid-container">
+			<div class="topBar"></div>
+			<p id="userid">
+			<% if(locals.user) { %>
+				<%= user %>
+			<% } %>
+			</p>
+			<div class="g-signin2"><a href="http://accounts.google.com" target="_blank">
+				<% if(locals.user) { %>Switch account<% } else if(!authenticated) { %>Sign in<% } %></a>
+			</div>
+			<nav>
+				<a href="/">Home</a>
+				<a href="/real_face">Learn</a>
+				<a href="/upload">Upload</a>
+			</nav>
+			<span id="error"></span>
+			<a href="#" id="delete_all">Delete uploaded pictures</a>
+		</div>
+	</body>
+</html>
